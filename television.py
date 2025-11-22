@@ -1,16 +1,17 @@
-MIN_VOLUME = 0
-MAX_VOLUME = 2
-MIN_CHANNEL = 0
-MAX_CHANNEL = 3
+
 class Television:
+    MIN_VOLUME = 0
+    MAX_VOLUME = 2
+    MIN_CHANNEL = 0
+    MAX_CHANNEL = 3
     def __init__(self) -> None:
         """
         Method to set default values of television object.
         """
         self.__status=False
         self.__muted=False
-        self.__volume=MIN_VOLUME
-        self.__channel=MIN_CHANNEL
+        self.__volume=Television.MIN_VOLUME
+        self.__channel=Television.MIN_CHANNEL
 
     def power(self) -> None:
         """
@@ -30,8 +31,8 @@ class Television:
         Increments the channel by 1, changes to minimum if at max when called
         """
         if self.__status:
-            if self.__channel>=MAX_CHANNEL:
-                self.__channel=MIN_CHANNEL
+            if self.__channel>=Television.MAX_CHANNEL:
+                self.__channel=Television.MIN_CHANNEL
             else:
                 self.__channel+=1
 
@@ -40,8 +41,8 @@ class Television:
         Decrements the channel by 1, changes to max if at minimum when called
         """
         if self.__status:
-            if self.__channel<=MIN_CHANNEL:
-                self.__channel=MAX_CHANNEL
+            if self.__channel<=Television.MIN_CHANNEL:
+                self.__channel=Television.MAX_CHANNEL
             else:
                 self.__channel-=1
 
@@ -51,7 +52,7 @@ class Television:
         """
         if self.__status:
             self.__muted=False
-            if self.__volume<MAX_VOLUME:
+            if self.__volume<Television.MAX_VOLUME:
                 self.__volume+=1
 
     def volume_down(self) -> None:
@@ -60,7 +61,7 @@ class Television:
         """
         if self.__status:
             self.__muted = False
-            if self.__volume>MIN_VOLUME:
+            if self.__volume>Television.MIN_VOLUME:
                 self.__volume-=1
 
     def __str__(self) -> str:
@@ -68,4 +69,4 @@ class Television:
         Generates string of current TV statuses if object is called.
         :return: Status of power, channel, and volume as a string.
         """
-        return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {0 if self.__muted else self.__volume}"
+        return f"Power = {self.__status}, Channel = {self.__channel}, Volume = {Television.MIN_VOLUME if self.__muted else self.__volume}"
